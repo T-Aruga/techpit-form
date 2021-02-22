@@ -12,6 +12,8 @@ import profileActions from "../store/profile/actions";
 
 import useStyles from "./styles";
 
+import { searchAddressFromPostalcode } from "../store/profile/effects";
+
 const Address = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
@@ -26,6 +28,7 @@ const Address = () => {
     if (!isPostalcode(code)) return;
 
     dispatch(profileActions.setAddress({ postalcode: code }));
+    dispatch(searchAddressFromPostalcode(code));
   };
 
   return (
